@@ -110,7 +110,7 @@ function PricingSection() {
         <div className="text-center mb-24">
           <span className="text-sm font-medium uppercase tracking-widest text-neutral-500">Тарифы</span>
           <h2 className="overflow-hidden text-5xl md:text-7xl font-bold tracking-tight text-white mt-6">
-            <span className="flex flex-wrap"><RevealWords text="Прозрачные цены." fill="text-white" /></span>
+            <span className="flex flex-wrap justify-center"><RevealWords text="Прозрачные цены." fill="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" /></span>
           </h2>
           <p className="text-neutral-400 mt-6 text-lg max-w-xl mx-auto">Весь функционал доступен на любом тарифе. Разница только в количестве сотрудников.</p>
         </div>
