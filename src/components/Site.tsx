@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export function SiteHeader() {
+export function SiteHeader({ dark = false }: { dark?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -17,10 +17,16 @@ export function SiteHeader() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/70 backdrop-blur-lg border-b border-neutral-100" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? dark
+            ? "bg-neutral-950/70 backdrop-blur-lg border-b border-white/10"
+            : "bg-white/70 backdrop-blur-lg border-b border-neutral-100"
+          : "bg-transparent"
+      } ${dark ? "text-white" : ""}`}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
-        <Link href="/" className="text-lg font-bold tracking-tight text-neutral-950 hover:opacity-70 transition-opacity">
+        <Link href="/" className={`text-lg font-bold tracking-tight ${dark ? "text-white" : "text-neutral-950"} hover:opacity-70 transition-opacity`}>
           WorkDo
         </Link>
         <div className="flex items-center gap-4">
