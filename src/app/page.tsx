@@ -139,17 +139,8 @@ export default function Home() {
             <Link href="/" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-neutral-950 bg-white shadow-sm">
               <HomeIcon className="w-3 h-3" />Главная
             </Link>
-            {[{ id: "security", label: "Охрана", icon: Shield }, { id: "construction", label: "Строительство", icon: Building2 }, { id: "yacht", label: "Водная", icon: Ship }].map((v) => {
-              const Icon = v.icon;
-              return (
-                <Link key={v.id} href={`/verticals/${v.id}`} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-neutral-500 hover:text-neutral-950 hover:bg-white/50 transition-all">
-                  <Icon className="w-3 h-3" />{v.label}
-                </Link>
-              );
-            })}
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/signin" className="text-xs text-neutral-500 hover:text-neutral-950 transition-colors hidden sm:block">Войти</Link>
             <MagneticLink href="/register" className="bg-neutral-950 text-white px-4 py-1.5 rounded-full text-xs font-medium hover:bg-neutral-800 transition-colors">Начать бесплатно</MagneticLink>
           </div>
         </div>
@@ -497,7 +488,7 @@ export default function Home() {
       {/* ─── Footer ─── */}
       <footer className="py-20 md:py-24 border-t border-neutral-200">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-5 gap-12 md:gap-8">
+          <div className="grid md:grid-cols-4 gap-12 md:gap-8">
             <div className="md:col-span-1">
               <motion.a href="/" className="text-lg font-bold tracking-tight mb-4 block text-neutral-950" whileHover={{ scale: 1.02 }}>WorkDo</motion.a>
               <p className="text-sm text-neutral-500 leading-relaxed mb-4">ERP-Платформа управления бизнесом полного цикла для охранных, строительных и водных мануфактур.</p>
@@ -508,7 +499,6 @@ export default function Home() {
             </div>
             {[
               { title: "Продукт", links: [{ label: "Возможности", url: "/" }, { label: "Тарифы", url: "/#pricing" }, { label: "API", url: "/docs" }, { label: "О компании", url: "/about" }] },
-              { title: "Индустрии", links: [{ label: "Охрана", url: "/verticals/security" }, { label: "Строительство", url: "/verticals/construction" }, { label: "Водная", url: "/verticals/yacht" }] },
               { title: "Разработчикам", links: [{ label: "Документация API", url: "/docs" }, { label: "Webhooks", url: "/docs/webhooks" }, { label: "SDK", url: "/docs/sdk" }, { label: "Changelog", url: "/changelog" }] },
               { title: "Компания", links: [{ label: "О нас", url: "/about" }, { label: "Контакты", url: "/contacts" }, { label: "Политика", url: "/privacy" }, { label: "Оферта", url: "/terms" }] },
             ].map((col, i) => (
