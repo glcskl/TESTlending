@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WorkDo — ERP-Платформа управления бизнесом полного цикла для охранных, строительных и яхт-клубов",
+  title: "WorkDo — ERP-Платформа управления бизнесом полного цикла",
   description:
     "WorkDo — ERP-платформа управления бизнесом полного цикла: управление персоналом, объектами, финансами и отчётностью в одной платформе.",
 };

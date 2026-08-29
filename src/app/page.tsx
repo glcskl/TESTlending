@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useInView, type MotionValue } from "framer-motion";
-import { ArrowRight, CircleCheckBig, Sparkles, Shield, Ship, Building2, Home as HomeIcon, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
+import { ArrowRight, CircleCheckBig, Sparkles, Shield, Home as HomeIcon, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
 
 function MagneticLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -386,70 +386,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Industries ─── */}
-      <section className="py-32 md:py-44">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <motion.div {...fadeUp} className="mb-16">
-            <span className="text-sm font-medium uppercase tracking-widest text-neutral-400">Три мануфактуры</span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mt-6"><RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Готовые решения" />{" "}<RevealLine className="text-neutral-950" text="для вашего бизнеса" /></h2>
-            <p className="text-neutral-500 mt-4 max-w-2xl leading-relaxed">WorkDo адаптируется под специфику вашей отрасли. Не настраивайте с нуля — используйте готовые сценарии.</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Shield,
-                label: "Охранная мануфактура",
-                features: [
-                  "Планирование смен", "GPS-мониторинг", "NFC/QR-отметки",
-                  "Автотабель и расчёт ЗП", "Отчётность заказчикам", "Мобильное приложение",
-                ],
-              },
-              {
-                icon: Building2,
-                label: "Строительная мануфактура",
-                features: [
-                  "Проекты и этапы", "Сметы и бюджеты", "Контроль бригад",
-                  "Учёт материалов", "Финансы по объектам", "Закрывающие документы",
-                ],
-              },
-              {
-                icon: Ship,
-                label: "Водная мануфактура",
-                features: [
-                  "Бронирование причалов", "Экипаж и смены", "Абонементы",
-                  "Услуги и оборудование", "Финансовый учёт", "Платёжные интеграции",
-                ],
-              },
-            ].map((ind, i) => {
-              const Icon = ind.icon;
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -4 }}
-                  className="group relative p-8 rounded-2xl bg-neutral-50 border border-neutral-200 hover:border-neutral-300 hover:shadow-sm transition-all duration-300"
-                >
-                  <Icon className="w-5 h-5 text-neutral-950 mb-5" />
-                  <h3 className="text-lg font-semibold mb-4">{ind.label}</h3>
-                  <ul className="space-y-2">
-                    {ind.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5 text-sm text-neutral-600">
-                        <span className="w-1 h-1 rounded-full bg-neutral-300 flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* ─── Trust Section ─── */}
       <section className="py-24 md:py-32 bg-neutral-50">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -518,7 +454,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-12 md:gap-8">
             <div className="md:col-span-1">
               <motion.a href="/" className="text-lg font-bold tracking-tight mb-4 block text-neutral-950" whileHover={{ scale: 1.02 }}>WorkDo</motion.a>
-              <p className="text-sm text-neutral-500 leading-relaxed mb-4">ERP-Платформа управления бизнесом полного цикла для охранных, строительных и водных мануфактур.</p>
+              <p className="text-sm text-neutral-500 leading-relaxed mb-4">ERP-Платформа управления бизнесом полного цикла.</p>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-xs text-neutral-500">Система работает</span>
