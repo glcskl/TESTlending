@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useInView, type MotionValue } from "framer-motion";
-import { ArrowRight, Shield, Ship, Building2, Home as HomeIcon, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
+import { ArrowRight, CircleCheckBig, Sparkles, Shield, Ship, Building2, Home as HomeIcon, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
 
 function MagneticLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -93,6 +93,68 @@ function RevealLine({ text, className = "", delay = 0 }: { text: string; classNa
     >
       {text}
     </motion.span>
+  );
+}
+
+function PricingSection() {
+  const [yearly, setYearly] = useState(false);
+  const plans = [
+    { name: "Базовый", desc: "Для небольших ЧОП", monthly: 209, cap: "до 10 сотрудников" },
+    { name: "Стандарт", desc: "Для растущих компаний", monthly: 469, cap: "до 30 сотрудников", highlight: true },
+    { name: "Бизнес", desc: "Для крупных ЧОП", monthly: 789, cap: "до 100 сотрудников" },
+    { name: "Премиум", desc: "Для холдингов и сетей", monthly: 1239, cap: "100+ сотрудников" },
+  ];
+  return (
+    <section id="тарифы" className="py-32 md:py-48 bg-neutral-950 text-white">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div className="text-center mb-24">
+          <span className="text-sm font-medium uppercase tracking-widest text-neutral-500">Тарифы</span>
+          <h2 className="overflow-hidden text-5xl md:text-7xl font-bold tracking-tight text-white mt-6">
+            <span className="flex flex-wrap"><RevealWords text="Прозрачные цены." fill="text-white" /></span>
+          </h2>
+          <p className="text-neutral-400 mt-6 text-lg max-w-xl mx-auto">Весь функционал доступен на любом тарифе. Разница только в количестве сотрудников.</p>
+        </div>
+        <div className="flex justify-center mb-10">
+          <div className="relative bg-neutral-800 p-1 rounded-full flex">
+            <button onClick={() => setYearly(false)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${!yearly ? "bg-white text-neutral-950 shadow-sm" : "text-neutral-400 hover:text-white"}`}>Месяц</button>
+            <button onClick={() => setYearly(true)} className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${yearly ? "bg-white text-neutral-950 shadow-sm" : "text-neutral-400 hover:text-white"}`}>Год<span className={`text-xs ${yearly ? "text-green-600" : "text-green-500"}`}>-20%</span></button>
+          </div>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+          {plans.map((p, i) => {
+            const price = yearly ? Math.round(p.monthly * 0.8) : p.monthly;
+            return (
+              <motion.div key={p.name} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ delay: i * 0.1, duration: 0.6, ease: REVEAL }}
+                className={`relative rounded-2xl border p-6 flex flex-col ${p.highlight ? "border-2 border-white shadow-lg bg-white text-neutral-950" : "border-neutral-700 bg-neutral-800/50"}`}>
+                {p.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="bg-neutral-950 text-white px-4 py-0.5 rounded-full text-xs font-medium inline-flex items-center gap-1 whitespace-nowrap border border-neutral-700"><Sparkles className="w-3 h-3" />Популярный</span>
+                  </div>
+                )}
+                <div className={p.highlight ? "pt-2" : ""}>
+                  <h3 className={`text-lg font-semibold mb-1 ${p.highlight ? "" : "text-white"}`}>{p.name}</h3>
+                  <p className={`text-sm mb-4 ${p.highlight ? "text-neutral-500" : "text-neutral-400"}`}>{p.desc}</p>
+                  <div className="mb-4">
+                    <span className={`text-3xl font-bold ${p.highlight ? "" : "text-white"}`}>{price.toLocaleString("ru-RU")}</span>
+                    <span className={`${p.highlight ? "text-neutral-500" : "text-neutral-400"}`}> BYN/мес</span>
+                  </div>
+                  <div className="space-y-2 mb-6 text-sm">
+                    <div className="flex items-center gap-2"><CircleCheckBig className={`w-4 h-4 flex-shrink-0 ${p.highlight ? "text-green-600" : "text-green-500"}`} /><span className={`${p.highlight ? "text-neutral-700" : "text-neutral-300"}`}>{p.cap}</span></div>
+                    <div className="flex items-center gap-2"><CircleCheckBig className={`w-4 h-4 flex-shrink-0 ${p.highlight ? "text-green-600" : "text-green-500"}`} /><span className={`${p.highlight ? "text-neutral-700" : "text-neutral-300"}`}>Весь функционал</span></div>
+                  </div>
+                </div>
+                <div className="mt-auto">
+                  <a href="/register" className={`block text-center w-full py-2.5 rounded-xl text-sm font-medium transition-colors ${p.highlight ? "bg-neutral-950 text-white hover:bg-neutral-800" : "border border-neutral-600 text-neutral-200 hover:bg-neutral-700 hover:text-white"}`}>Выбрать</a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+        <div className="text-center">
+          <a className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors" href="/verticals/security/pricing">Подробнее о тарифах<ArrowRight className="w-4 h-4" /></a>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -424,42 +486,7 @@ export default function Home() {
       </section>
 
       {/* ─── Pricing ─── */}
-      <section id="pricing" className="py-32 md:py-44">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <motion.div {...fadeUp} className="mb-16">
-            <span className="text-sm font-medium uppercase tracking-widest text-neutral-400">Тарифы</span>
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6"><RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Прозрачные цены" /></h2>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { name: "Базовый", price: "4 990 ₽/мес", desc: "Для небольших команд до 30 сотрудников", features: ["До 30 сотрудников", "До 5 объектов", "Управление персоналом", "Базовая отчётность", "Email-поддержка"], cta: "Начать бесплатно", highlight: false },
-              { name: "Профессиональный", price: "9 990 ₽/мес", desc: "Для растущего бизнеса от 30 сотрудников", features: ["До 100 сотрудников", "Неограниченно объектов", "Полный финансовый учёт", "GPS-контроль и аналитика", "Приоритетная поддержка", "API-доступ"], cta: "Попробовать", highlight: true },
-              { name: "Корпоративный", price: "Индивидуально", desc: "Для крупных компаний и сетей", features: ["Неограниченно сотрудников", "Неограниченно объектов", "Выделенный менеджер", "SLA 99.9%", "Кастомные интеграции", "Обучение персонала"], cta: "Связаться", highlight: false },
-            ].map((plan, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -4 }}
-                className={`rounded-3xl p-8 md:p-10 flex flex-col ${plan.highlight ? "bg-neutral-950 text-white" : "bg-neutral-50 text-neutral-950 border border-neutral-200"}`}>
-                <div className="flex-1">
-                  <p className={`text-sm font-medium mb-1 ${plan.highlight ? "text-neutral-400" : "text-neutral-500"}`}>{plan.name}</p>
-                  <p className="text-3xl md:text-4xl font-bold tracking-tight mb-1">{plan.price}</p>
-                  <p className={`text-sm ${plan.highlight ? "text-neutral-500" : "text-neutral-400"} mb-8`}>{plan.desc}</p>
-                  <ul className="space-y-2.5 mb-8">
-                    {plan.features.map((f) => (
-                      <li key={f} className={`flex items-center gap-2 text-sm ${plan.highlight ? "text-neutral-400" : "text-neutral-600"}`}>
-                        <span className={`w-1 h-1 rounded-full ${plan.highlight ? "bg-neutral-500" : "bg-neutral-400"}`} />{f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <MagneticLink href="/register"
-                  className={`block w-full py-3 rounded-full text-center text-sm font-medium transition-colors ${plan.highlight ? "bg-white text-neutral-950 hover:bg-neutral-100" : "bg-neutral-950 text-white hover:bg-neutral-800"}`}>
-                  {plan.cta}
-                </MagneticLink>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PricingSection />
 
       {/* ─── CTA ─── */}
       <section className="py-32 md:py-44 relative overflow-hidden bg-neutral-950 text-white">
