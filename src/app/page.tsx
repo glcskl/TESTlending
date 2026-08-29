@@ -252,16 +252,25 @@ export default function Home() {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { value: 150, prefix: "", suffix: "+", label: "решений в одной платформе", desc: "" },
-              { value: 10000, prefix: "до ", suffix: "", label: "объектов и сотрудников", desc: "" },
-              { value: 5000, prefix: "до ", suffix: "", label: "объектов", desc: "" },
-              { value: 99.9, prefix: "", suffix: "%", label: "Uptime инфраструктуры", desc: "SLA для корпоративных клиентов" },
+              { value: 150, prefix: "", suffix: "+", label: "решений в одной платформе", desc: "", href: "/features" },
+              { value: 10000, prefix: "до ", suffix: "", label: "объектов и сотрудников", desc: "", href: "/advantages" },
+              { value: 5000, prefix: "до ", suffix: "", label: "объектов", desc: "", href: "/trust" },
+              { value: 99.9, prefix: "", suffix: "%", label: "Uptime инфраструктуры", desc: "SLA для корпоративных клиентов", href: "/trust" },
             ].map((stat, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5 }} className="text-center">
+              <motion.a
+                key={i}
+                href={stat.href}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                whileHover={{ y: -6 }}
+                className="text-center group cursor-pointer"
+              >
                 <Counter from={0} to={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-                <p className="text-sm font-medium text-neutral-950 mt-2">{stat.label}</p>
+                <p className="text-sm font-medium text-neutral-950 mt-2 group-hover:text-neutral-600 transition-colors">{stat.label}</p>
                 {stat.desc && <p className="text-xs text-neutral-400 mt-1">{stat.desc}</p>}
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -283,36 +292,42 @@ export default function Home() {
             {[
               {
                 icon: Users,
+                slug: "upravlenie-personalom",
                 title: "Управление персоналом",
                 desc: "Кадровый учёт, расчёт зарплаты, планирование смен. Сотрудники отмечаются через мобильное приложение.",
                 metric: "−40 ч/мес на расчёте ЗП",
               },
               {
                 icon: MapPin,
+                slug: "gps-kontrol",
                 title: "GPS-контроль",
                 desc: "Трекинг сотрудников и транспорта. NFC/QR-отметки с фото, уведомления о нарушениях.",
                 metric: "Точность до 5 метров",
               },
               {
                 icon: BarChart3,
+                slug: "finansovyj-uchet",
                 title: "Финансовый учёт",
                 desc: "Договоры, акты, счета. План-факт анализ, расчёт налогов и закрывающих документов.",
                 metric: "Интеграция с 1С и банками",
               },
               {
                 icon: TrendingUp,
+                slug: "biznes-analitika",
                 title: "Бизнес-аналитика",
                 desc: "Метрики бизнеса в реальном времени: загрузка, выручка, рентабельность.",
                 metric: "Обновление каждые 5 секунд",
               },
               {
                 icon: Lock,
+                slug: "bezopasnost",
                 title: "Безопасность",
                 desc: "Изоляция данных на уровне БД. Ролевая модель, полный аудит действий.",
                 metric: "Соответствие 152-ФЗ",
               },
               {
                 icon: Database,
+                slug: "api-i-integracii",
                 title: "API и интеграции",
                 desc: "REST API с авторизацией, webhooks, OpenAPI-документация и готовые SDK.",
                 metric: "50+ API endpoints",
@@ -320,19 +335,27 @@ export default function Home() {
             ].map((item, i) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <motion.a
                   key={i}
+                  href={`/features/${item.slug}`}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="p-6 rounded-2xl bg-white border border-neutral-200"
+                  whileHover={{ y: -6 }}
+                  className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 hover:shadow-lg transition-shadow flex flex-col cursor-pointer"
                 >
                   <Icon className="w-8 h-8 text-neutral-950 mb-4" />
-                  <h3 className="text-sm font-semibold mb-2">{item.title}</h3>
+                  <h3 className="text-sm font-semibold mb-2 group-hover:text-neutral-600 transition-colors">{item.title}</h3>
                   <p className="text-xs text-neutral-500 leading-relaxed mb-3">{item.desc}</p>
-                  <span className="text-xs font-medium text-neutral-950">{item.metric}</span>
-                </motion.div>
+                  <span className="text-xs font-medium text-neutral-950 mt-auto inline-flex items-center gap-1.5">
+                    {item.metric}
+                    <span className="inline-flex items-center gap-1 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Подробнее
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </span>
+                </motion.a>
               );
             })}
           </div>
@@ -352,29 +375,35 @@ export default function Home() {
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Layers, title: "Управление филиалами", desc: "Ведите несколько компаний и филиалов в одном аккаунте. Данные каждого бизнеса изолированы, отчётность консолидируется автоматически." },
-              { icon: Smartphone, title: "Мобильное приложение", desc: "Сотрудники отмечают начало и конец смены, получают уведомления, подают заявки через приложение. Работает на iOS и Android." },
-              { icon: Clock, title: "Сокращение времени на учёт", desc: "Автоматизация рутинных задач сокращает время на кадровый учёт до 70%, а на финансовую отчётность — до 60%." },
-              { icon: Target, title: "7 лет развития", desc: "Платформа развивается с 2019 года. Более 150 релизов, 12000+ объектов под управлением, 5000+ сотрудников в системе." },
-              { icon: Shield, title: "Безопасность данных", desc: "Шифрование данных в покое и при передаче. Резервное копирование каждые 6 часов. Соответствие 152-ФЗ о персональных данных." },
-              { icon: Zap, title: "Интеграция с 1С и банками", desc: "Готовая интеграция с 1С:Бухгалтерия, банк-клиентом, системами оплаты. Обмен данными без ручного ввода." },
+              { icon: Layers, slug: "upravlenie-filialami", title: "Управление филиалами", desc: "Ведите несколько компаний и филиалов в одном аккаунте. Данные каждого бизнеса изолированы, отчётность консолидируется автоматически." },
+              { icon: Smartphone, slug: "mobilnoe-prilozhenie", title: "Мобильное приложение", desc: "Сотрудники отмечают начало и конец смены, получают уведомления, подают заявки через приложение. Работает на iOS и Android." },
+              { icon: Clock, slug: "sokrashchenie-vremeni", title: "Сокращение времени на учёт", desc: "Автоматизация рутинных задач сокращает время на кадровый учёт до 70%, а на финансовую отчётность — до 60%." },
+              { icon: Target, slug: "sem-let-razvitiya", title: "7 лет развития", desc: "Платформа развивается с 2019 года. Более 150 релизов, 12000+ объектов под управлением, 5000+ сотрудников в системе." },
+              { icon: Shield, slug: "bezopasnost-dannyh", title: "Безопасность данных", desc: "Шифрование данных в покое и при передаче. Резервное копирование каждые 6 часов. Соответствие 152-ФЗ о персональных данных." },
+              { icon: Zap, slug: "integraciya-1s", title: "Интеграция с 1С и банками", desc: "Готовая интеграция с 1С:Бухгалтерия, банк-клиентом, системами оплаты. Обмен данными без ручного ввода." },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <motion.a
                   key={i}
+                  href={`/advantages/${item.slug}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06, duration: 0.5 }}
-                  className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06]"
+                  whileHover={{ y: -6 }}
+                  className="group p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.14] transition-colors cursor-pointer"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-5 group-hover:bg-white/[0.1] transition-colors">
                     <Icon className="w-5 h-5 text-neutral-300" />
                   </div>
                   <h3 className="text-base font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
-                </motion.div>
+                  <p className="text-sm text-neutral-500 leading-relaxed mb-4">{item.desc}</p>
+                  <span className="text-xs font-medium text-neutral-400 inline-flex items-center gap-1.5">
+                    Подробнее
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </motion.a>
               );
             })}
           </div>
@@ -390,26 +419,34 @@ export default function Home() {
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { icon: Database, title: "Резервное копирование", desc: "Автоматическое резервирование всех данных каждые 6 часов. Восстановление в один клик без потерь.", metric: "Резервная копия каждые 6 часов" },
-              { icon: Layers, title: "Изоляция данных", desc: "Данные каждой компании хранятся отдельно. Никакого риска смешивания или случайной утечки.", metric: "Enterprise-grade изоляция" },
-              { icon: Globe, title: "Готовые интеграции", desc: "1С, банк-клиент, платёжные системы. Все популярные сервисы работают из коробки.", metric: "50+ готовых интеграций" },
-              { icon: Lock, title: "Соответствие 152-ФЗ", desc: "Обработка данных по закону. Шифрование, аудит действий, защита персональных данных сотрудников.", metric: "3 года хранения аудита" },
+              { icon: Database, slug: "rezervnoe-kopirovanie", title: "Резервное копирование", desc: "Автоматическое резервирование всех данных каждые 6 часов. Восстановление в один клик без потерь.", metric: "Резервная копия каждые 6 часов" },
+              { icon: Layers, slug: "izolyaciya-dannyh", title: "Изоляция данных", desc: "Данные каждой компании хранятся отдельно. Никакого риска смешивания или случайной утечки.", metric: "Enterprise-grade изоляция" },
+              { icon: Globe, slug: "gotovye-integracii", title: "Готовые интеграции", desc: "1С, банк-клиент, платёжные системы. Все популярные сервисы работают из коробки.", metric: "50+ готовых интеграций" },
+              { icon: Lock, slug: "sootvetstvie-152-fz", title: "Соответствие 152-ФЗ", desc: "Обработка данных по закону. Шифрование, аудит действий, защита персональных данных сотрудников.", metric: "3 года хранения аудита" },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
-                <motion.div
+                <motion.a
                   key={i}
+                  href={`/trust/${item.slug}`}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.4 }}
-                  className="p-6 rounded-2xl bg-white border border-neutral-200"
+                  whileHover={{ y: -6 }}
+                  className="group p-6 rounded-2xl bg-white border border-neutral-200 hover:border-neutral-300 hover:shadow-lg transition-shadow flex flex-col cursor-pointer"
                 >
                   <Icon className="w-8 h-8 text-neutral-950 mb-4" />
-                  <h3 className="text-sm font-semibold mb-2">{item.title}</h3>
+                  <h3 className="text-sm font-semibold mb-2 group-hover:text-neutral-600 transition-colors">{item.title}</h3>
                   <p className="text-xs text-neutral-500 leading-relaxed mb-3">{item.desc}</p>
-                  <span className="text-xs font-medium text-neutral-950">{item.metric}</span>
-                </motion.div>
+                  <span className="text-xs font-medium text-neutral-950 mt-auto inline-flex items-center gap-1.5">
+                    {item.metric}
+                    <span className="inline-flex items-center gap-1 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Подробнее
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </span>
+                </motion.a>
               );
             })}
           </div>
