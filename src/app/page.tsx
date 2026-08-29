@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useInView, type MotionValue } from "framer-motion";
-import { ArrowRight, CircleCheckBig, Sparkles, Shield, Home as HomeIcon, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
+import { ArrowRight, CircleCheckBig, Sparkles, Shield, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
 
 function MagneticLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -197,11 +197,6 @@ export default function Home() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-white/70 backdrop-blur-lg border-b border-neutral-100" : "bg-transparent"}`}>
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
           <Link href="/" className="text-lg font-bold tracking-tight text-neutral-950 hover:opacity-70 transition-opacity">WorkDo</Link>
-          <div className="hidden md:flex items-center gap-1 p-0.5 bg-neutral-100/50 backdrop-blur-xl rounded-full border border-neutral-100">
-            <Link href="/" className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-neutral-950 bg-white shadow-sm">
-              <HomeIcon className="w-3 h-3" />Главная
-            </Link>
-          </div>
           <div className="flex items-center gap-4">
             <MagneticLink href="/register" className="bg-neutral-950 text-white px-4 py-1.5 rounded-full text-xs font-medium hover:bg-neutral-800 transition-colors">Начать бесплатно</MagneticLink>
           </div>
