@@ -149,10 +149,10 @@ export default function Home() {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
+              { value: 150, prefix: "", suffix: "+", label: "решений в одной платформе", desc: "", href: "/features" },
+              { value: 10000, prefix: "до ", suffix: "", label: "объектов и сотрудников", desc: "", href: "/advantages" },
+              { value: 5000, prefix: "до ", suffix: "", label: "объектов", desc: "", href: "/trust" },
               { value: 80, prefix: "", suffix: "%", label: "быстрее расчёт зарплаты", desc: "автоматически из табеля: ночные, праздничные, сверхурочные", href: "/features/sotrudniki-i-kadry" },
-              { value: 99.9, prefix: "", suffix: "%", label: "доступность платформы", desc: "контроль смен и объектов 24/7", href: "/trust" },
-              { value: 196, prefix: "", suffix: "", label: "параметров учёта для ЧОП", desc: "от кадровых карточек до смет и бюджета", href: "/advantages/model-dannyh" },
-              { value: 40, prefix: "", suffix: "+", label: "экранов управления ЧОП", desc: "от дашборда до аудит-лога", href: "/features" },
             ].map((stat, i) => (
               <motion.a
                 key={i}
@@ -418,7 +418,7 @@ export default function Home() {
               <div className="flex items-center gap-6">
                 <a href="mailto:info@workdo.ru" className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors">info@workdo.ru</a>
                 <span className="text-neutral-300">|</span>
-                <a href="tel:+78001234567" className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors">+7 (800) 123-45-67</a>
+                <a href="tel:+37529184884" className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors">+375 (29) 718-48-84</a>
               </div>
             </div>
           </div>

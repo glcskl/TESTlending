@@ -341,13 +341,13 @@ function RegisterPage() {
                     <span className="text-sm font-semibold group-hover:underline">info@workdo.ru</span>
                   </span>
                 </a>
-                <a href="tel:+78001234567" className="flex items-center gap-4 group">
+                <a href="tel:+37529184884" className="flex items-center gap-4 group">
                   <span className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
                     <Phone className="w-5 h-5 text-green-600" />
                   </span>
                   <span>
                     <span className="block text-xs text-neutral-500 mb-1">Телефон</span>
-                    <span className="text-sm font-semibold group-hover:underline">+7 (800) 123-45-67</span>
+                    <span className="text-sm font-semibold group-hover:underline">+375 (29) 718-48-84</span>
                   </span>
                 </a>
               </div>
