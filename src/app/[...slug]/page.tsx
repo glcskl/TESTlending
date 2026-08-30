@@ -35,7 +35,9 @@ function CtaBlock({ sectionId, overviewTitle }: { sectionId?: string; overviewTi
     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: REVEAL }}
       className="relative bg-neutral-900 rounded-3xl p-8 md:p-16 overflow-hidden text-center">
       <div className="relative z-10">
-        <h3 className="text-2xl md:text-3xl font-medium text-white leading-relaxed max-w-3xl mx-auto mb-4">Готовы попробовать?</h3>
+        <h3 className="text-2xl md:text-3xl font-bold leading-relaxed max-w-3xl mx-auto mb-4 bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
+          Готовы попробовать?
+        </h3>
         <p className="text-neutral-300 max-w-md mx-auto mb-8">
           Персональная демонстрация под ваш профиль. Ответим на вопросы и настроим тестовый доступ. Бесплатно.
         </p>
@@ -122,11 +124,18 @@ function OverviewPage({ id }: { id: SectionId }) {
 function Checklist({ items }: { items: string[] }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
-      {items.map((b) => (
-        <div key={b} className="flex gap-4 p-6 rounded-2xl border border-neutral-200 items-start">
+      {items.map((b, i) => (
+        <motion.div
+          key={b}
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-5%" }}
+          transition={{ delay: i * 0.07, duration: 0.4, ease: REVEAL }}
+          className="flex gap-4 p-6 rounded-2xl border border-neutral-200 items-start"
+        >
           <CircleCheckBig className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
           <span className="text-sm text-neutral-700 leading-relaxed">{b}</span>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
