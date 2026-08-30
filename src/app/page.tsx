@@ -378,40 +378,46 @@ export default function Home() {
       </section>
 
       {/* ─── Footer ─── */}
-      <footer className="py-20 md:py-24 border-t border-neutral-200">
+      <footer className="py-24 md:py-32 border-t border-neutral-200 bg-neutral-50">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-4 gap-12 md:gap-8">
+          <div className="grid md:grid-cols-5 gap-12 md:gap-8">
             <div className="md:col-span-1">
-              <motion.a href="/" className="text-lg font-bold tracking-tight mb-4 block text-neutral-950" whileHover={{ scale: 1.02 }}>WorkDo</motion.a>
-              <p className="text-sm text-neutral-500 leading-relaxed mb-4">ERP-Платформа управления бизнесом полного цикла.</p>
+              <motion.a href="https://workdo.ru" className="text-2xl font-bold tracking-tight mb-6 block text-neutral-950" whileHover={{ scale: 1.02 }}>
+                WorkDo
+              </motion.a>
+              <p className="text-sm text-neutral-500 leading-relaxed mb-6">Платформа для управления бизнесом. Салоны красоты, охранные предприятия и яхт-клубы.</p>
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs text-neutral-500">Система работает</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-xs text-neutral-400">Система работает</span>
               </div>
             </div>
             {[
-              { title: "Продукт", links: [{ label: "Возможности", url: "/" }, { label: "Тарифы", url: "/#pricing" }, { label: "API", url: "/docs" }, { label: "О компании", url: "/about" }] },
-              { title: "Разработчикам", links: [{ label: "Документация API", url: "/docs" }, { label: "Webhooks", url: "/docs/webhooks" }, { label: "SDK", url: "/docs/sdk" }, { label: "Changelog", url: "/changelog" }] },
-              { title: "Компания", links: [{ label: "О нас", url: "/about" }, { label: "Контакты", url: "/contacts" }, { label: "Политика", url: "/privacy" }, { label: "Оферта", url: "/terms" }] },
+              { title: "Продукт", links: [{ label: "Возможности", url: "https://workdo.ru/features" }, { label: "Тарифы", url: "https://workdo.ru/pricing" }, { label: "Кейсы", url: "https://workdo.ru/cases" }, { label: "Блог", url: "https://workdo.ru/blog" }] },
+              { title: "Компания", links: [{ label: "О нас", url: "https://workdo.ru/about" }, { label: "Карьера", url: "https://workdo.ru/careers" }, { label: "Контакты", url: "https://workdo.ru/contacts" }, { label: "Пресса", url: "https://workdo.ru/press" }] },
+              { title: "Поддержка", links: [{ label: "Документация", url: "https://workdo.ru/docs" }, { label: "FAQ", url: "https://workdo.ru/faq" }, { label: "Статус", url: "https://workdo.ru/status" }, { label: "Связаться", url: "https://workdo.ru/contacts" }] },
+              { title: "Документы", links: [{ label: "Политика конфиденциальности", url: "https://workdo.ru/privacy" }, { label: "Пользовательское соглашение", url: "https://workdo.ru/terms" }, { label: "Публичная оферта", url: "https://workdo.ru/offer" }] },
             ].map((col, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05, duration: 0.4 }}>
-                <h5 className="font-semibold text-xs text-neutral-500 mb-4 uppercase tracking-widest">{col.title}</h5>
-                <ul className="space-y-2">
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                <h5 className="font-semibold text-sm text-neutral-950 mb-6 uppercase tracking-wider">{col.title}</h5>
+                <ul className="space-y-3">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      <motion.a href={link.url} className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors" whileHover={{ x: 3 }}>{link.label}</motion.a>
+                      <motion.a href={link.url} className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors relative group inline-block" whileHover={{ x: 4 }}>
+                        {link.label}
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-neutral-950 group-hover:w-full transition-all duration-300" />
+                      </motion.a>
                     </li>
                   ))}
                 </ul>
               </motion.div>
             ))}
           </div>
-          <div className="mt-14 pt-6 border-t border-neutral-200">
+          <div className="mt-20 pt-8 border-t border-neutral-200">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-neutral-500">© 2026 WorkDo. Все права защищены.</p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-6">
                 <a href="mailto:info@workdo.ru" className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors">info@workdo.ru</a>
-                <span className="text-neutral-300 text-sm">|</span>
+                <span className="text-neutral-300">|</span>
                 <a href="tel:+78001234567" className="text-sm text-neutral-500 hover:text-neutral-950 transition-colors">+7 (800) 123-45-67</a>
               </div>
             </div>
