@@ -8,7 +8,7 @@ import { SiteHeader, SiteFooter } from "../../../components/Site";
 import { MagneticLink, Counter, REVEAL, RevealWords, RevealLine, HeroBg } from "../../../components/motion";
 import { PricingSection } from "../../../components/pricing-section";
 
-const MARQUEE_ITEMS = ["Security", "Patrol", "Guard", "WorkDo", "SaaS Platform"];
+const MARQUEE_ITEMS = ["workdo.ru", "saas", "patrol"];
 
 function Marquee() {
   const row = [...Array(2)].map((_, k) => (
