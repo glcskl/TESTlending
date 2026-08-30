@@ -34,7 +34,7 @@ function PricingSection() {
             {plans.map((p, i) => {
               const price = yearly ? Math.round(p.monthly * 0.8) : p.monthly;
               return (
-                <motion.div key={p.name} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ delay: i * 0.1, duration: 0.6, ease: REVEAL }}
+                <motion.div key={p.name} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ delay: i * 0.1, duration: 0.6, ease: REVEAL }} whileHover={{ y: -8, scale: 1.02, boxShadow: "0 24px 48px -16px rgba(0,0,0,0.55)", transition: { duration: 0.3, ease: "easeOut" } }}
                   className={`relative rounded-2xl border p-6 flex flex-col ${p.highlight ? "border-2 border-white shadow-lg bg-white text-neutral-950" : "border-neutral-700 bg-neutral-800/50"}`}>
                   {p.highlight && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
