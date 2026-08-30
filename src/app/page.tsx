@@ -179,9 +179,9 @@ export default function Home() {
           <motion.div {...fadeUp} className="text-center mb-20">
             <span className="text-sm font-medium uppercase tracking-widest text-neutral-400">Возможности платформы</span>
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[0.9]">
-              <RevealLine className="bg-gradient-to-b from-neutral-950 via-neutral-950 to-neutral-400 bg-clip-text text-transparent" text="Всё для управления" />
+              <span className="flex flex-wrap justify-center"><RevealWords text="Всё для управления" fill="bg-gradient-to-b from-neutral-950 via-neutral-950 to-neutral-400 bg-clip-text text-transparent" /></span>
               <br />
-              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="бизнесом в одном окне" delay={0.12} />
+              <span className="flex flex-wrap justify-center"><RevealWords text="бизнесом в одном окне" fill="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" delay={0.15} /></span>
             </h2>
           </motion.div>
 

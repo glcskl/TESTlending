@@ -55,7 +55,7 @@ function WordMask({ word, delay, fill, last }: { word: string; delay: number; fi
   return (
     <motion.span
       ref={ref}
-      className={`inline-block will-change-transform ${last ? "" : "mr-[0.3em]"} ${fill}`}
+      className={`inline-block will-change-transform ${last ? "" : "mr-[0.45em]"} ${fill}`}
       initial={false}
       animate={hidden ? { y: 20, opacity: 0 } : { y: 0, opacity: 1 }}
       transition={{ duration: 0.65, ease: REVEAL, delay }}
