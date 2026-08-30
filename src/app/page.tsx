@@ -151,7 +151,7 @@ export default function Home() {
             {[
               { value: 80, prefix: "", suffix: "%", label: "быстрее расчёт зарплаты", desc: "автоматически из табеля: ночные, праздничные, сверхурочные", href: "/features/sotrudniki-i-kadry" },
               { value: 99.9, prefix: "", suffix: "%", label: "доступность платформы", desc: "контроль смен и объектов 24/7", href: "/trust" },
-              { value: 100, prefix: "", suffix: "%", label: "изоляция данных клиентов", desc: "у каждой компании своя схема в базе данных", href: "/trust/izolyaciya-dannyh" },
+              { value: 196, prefix: "", suffix: "", label: "параметров учёта для ЧОП", desc: "от кадровых карточек до смет и бюджета", href: "/advantages/model-dannyh" },
               { value: 40, prefix: "", suffix: "+", label: "экранов управления ЧОП", desc: "от дашборда до аудит-лога", href: "/features" },
             ].map((stat, i) => (
               <motion.a
