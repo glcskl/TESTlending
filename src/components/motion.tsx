@@ -30,19 +30,20 @@ export function Counter({ from, to, suffix = "", prefix = "" }: { from: number; 
   const [count, setCount] = useState(from);
   const ref = useRef<HTMLParagraphElement>(null);
   const isInView = useInView(ref, { once: true });
+  const decimals = Number.isInteger(to) ? 0 : 1;
   useEffect(() => {
     if (!isInView) return;
     let current = from;
-    const steps = 40;
+    const steps = 12;
     const increment = (to - from) / steps;
     const timer = setInterval(() => {
       current += increment;
       if (current >= to) { setCount(to); clearInterval(timer); }
-      else { setCount(Math.round(current)); }
-    }, 1800 / steps);
+      else { setCount(Number(current.toFixed(decimals))); }
+    }, 500 / steps);
     return () => clearInterval(timer);
-  }, [isInView, from, to]);
-  return <p ref={ref} className="text-4xl md:text-5xl font-bold tracking-tighter tabular-nums">{prefix}{count.toLocaleString()}{suffix}</p>;
+  }, [isInView, from, to, decimals]);
+  return <p ref={ref} className="text-4xl md:text-5xl font-bold tracking-tighter tabular-nums">{prefix}{count.toLocaleString("ru-RU")}{suffix}</p>;
 }
 
 function WordMask({ word, delay, fill, last }: { word: string; delay: number; fill: string; last?: boolean }) {
