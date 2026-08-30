@@ -3,7 +3,7 @@
 import { use, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, CircleCheckBig, Mail, Phone } from "lucide-react";
+import { ArrowRight, CircleCheckBig, Mail, Phone, Shield, Lightbulb, Users, Eye, Compass, Code2, GraduationCap, Split, Dna, TrendingUp, ShieldCheck, Sparkles } from "lucide-react";
 import { findSection, findCard, type SectionId } from "../../lib/site-data";
 import { SiteHeader, SiteFooter } from "../../components/Site";
 import { MagneticLink, REVEAL } from "../../components/motion";
@@ -30,26 +30,33 @@ function SectionIntro({ label, title, sub }: { label: string; title: string; sub
   );
 }
 
-function CtaBlock({ sectionId, overviewTitle }: { sectionId?: string; overviewTitle?: string }) {
+function CtaBlock({ sectionId, overviewTitle, title, sub, secondary }: { sectionId?: string; overviewTitle?: string; title?: string; sub?: string; secondary?: { label: string; href: string } }) {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: REVEAL }}
       className="relative bg-neutral-900 rounded-3xl p-8 md:p-16 overflow-hidden text-center">
       <div className="relative z-10">
         <h3 className="text-2xl md:text-3xl font-bold leading-relaxed max-w-3xl mx-auto mb-4 bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-          Готовы попробовать?
+          {title ?? "Готовы попробовать?"}
         </h3>
-        <p className="text-neutral-300 max-w-md mx-auto mb-8">
-          Персональная демонстрация под ваш профиль. Ответим на вопросы и настроим тестовый доступ. Бесплатно.
+        <p className="text-neutral-300 max-w-xl mx-auto mb-8">
+          {sub ?? "Персональная демонстрация под ваш профиль. Ответим на вопросы и настроим тестовый доступ. Бесплатно."}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <MagneticLink href="/register" className="inline-flex items-center gap-2 bg-white text-neutral-950 px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-100 transition-colors">
             Попробовать бесплатно
             <ArrowRight className="w-3.5 h-3.5" />
           </MagneticLink>
-          {sectionId && (
-            <Link href={`/${sectionId}`} className="inline-flex items-center gap-2 border border-neutral-700 text-neutral-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-800 hover:text-white transition-colors">
-              {overviewTitle}
-            </Link>
+          {secondary ? (
+            <a href={secondary.href} className="inline-flex items-center gap-2 border border-neutral-700 text-neutral-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-800 hover:text-white transition-colors">
+              {secondary.label}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          ) : (
+            sectionId && (
+              <Link href={`/${sectionId}`} className="inline-flex items-center gap-2 border border-neutral-700 text-neutral-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-800 hover:text-white transition-colors">
+                {overviewTitle}
+              </Link>
+            )
           )}
         </div>
       </div>
@@ -365,11 +372,151 @@ function RegisterPage() {
   );
 }
 
+function ValueCard({ Icon, t, delay, title, children }: { Icon: any; t: { bg: string; text: string }; delay: number; title: string; children: React.ReactNode }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-5%" }}
+      transition={{ delay, duration: 0.4, ease: REVEAL }}
+      whileHover={{ y: -4 }}
+      className="p-8 rounded-2xl border border-neutral-200 hover:border-neutral-300 hover:shadow-md transition-all"
+    >
+      <div className={`w-12 h-12 rounded-xl ${t.bg} flex items-center justify-center mb-5`}>
+        <Icon className={`w-6 h-6 ${t.text}`} />
+      </div>
+      <h3 className="text-lg font-bold mb-3">{title}</h3>
+      <p className="text-sm text-neutral-600 leading-relaxed">{children}</p>
+    </motion.article>
+  );
+}
+
+function AboutPage() {
+  const stats = [
+    { value: "156+", label: "компаний" },
+    { value: "12 000+", label: "записей в месяц" },
+    { value: "99.9%", label: "uptime" },
+    { value: "4.8", label: "оценка клиентов" },
+  ];
+  return (
+    <div className="min-h-screen bg-white text-neutral-950 selection:bg-neutral-950 selection:text-white">
+      <SiteHeader />
+      <main className="max-w-6xl mx-auto px-6 py-12 md:py-20">
+        <nav className="text-sm text-neutral-500 mb-10 flex items-center gap-2 flex-wrap">
+          <Link href="/" className="hover:text-neutral-950 transition-colors">WorkDo</Link>
+          <span>/</span>
+          <span className="text-neutral-900 font-medium">О компании</span>
+        </nav>
+
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: REVEAL }}>
+          <span className="inline-flex items-center gap-2 text-sm bg-neutral-950 text-white px-4 py-2 rounded-full font-medium mb-6">
+            <Sparkles className="w-3.5 h-3.5" />
+            Работаем с 2023 года
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.02]">О компании WorkDo</h1>
+          <p className="text-lg md:text-xl text-neutral-600 leading-relaxed max-w-3xl">
+            Мы создаём инструменты для тех, кто управляет реальным бизнесом. Платформа WorkDo — это результат сотни разговоров с собственниками салонов и охранных предприятий.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.4, ease: REVEAL }}
+              className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200"
+            >
+              <p className="text-3xl md:text-4xl font-bold tracking-tight mb-1 bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">{s.value}</p>
+              <p className="text-sm text-neutral-500">{s.label}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: REVEAL }}
+          className="mt-20 rounded-2xl bg-neutral-50 border border-neutral-200 p-8 md:p-12"
+        >
+          <Label>Миссия</Label>
+          <p className="text-lg md:text-xl text-neutral-800 leading-relaxed mt-4 max-w-4xl">
+            Делать управление бизнесом простым и эффективным с помощью современных технологий. Каждая минута, сэкономленная на рутине, — это время для развития дела.
+          </p>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: REVEAL }} className="mt-24">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">Наши ценности</h2>
+          <div className="grid gap-5 md:grid-cols-2">
+            <ValueCard Icon={Shield} t={tint(0)} delay={0} title="Надёжность">
+              Мы понимаем, что наши клиенты доверяют нам критически важные процессы — от учёта рабочего времени до отчётности перед контролирующими органами. Каждая строчка кода проверена, каждая функция протестирована. Стабильность — не просто слово, а фундамент, на котором строится ваш бизнес. Мы гарантируем безопасность данных и соответствие 152-ФЗ.
+            </ValueCard>
+            <ValueCard Icon={Lightbulb} t={tint(1)} delay={0.06} title="Инновации">
+              Мы не копируем чужие решения — мы создаём инструменты, которые реально работают. Постоянно анализируем обратную связь, следим за трендами в индустриях и внедряем функции, которые экономят ваше время и деньги. Лучше один раз сделать хорошо, чем десять раз переделывать. Каждый месяц выпускаем обновления с новыми возможностями.
+            </ValueCard>
+            <ValueCard Icon={Users} t={tint(2)} delay={0.12} title="Клиентоориентированность">
+              Для нас каждый клиент — не абстрактный аккаунт в базе, а партнёр, с которым мы строим долгосрочные отношения. Мы помним ваши имена, понимаем ваши задачи и предлагаем решения, а не просто продаём подписку. Успех клиента — наш главный KPI. Среднее время ответа поддержки — 15 минут.
+            </ValueCard>
+            <ValueCard Icon={Eye} t={tint(3)} delay={0.18} title="Прозрачность">
+              Чёткие цены без скрытых платежей. Понятные условия без мелкого шрифта. Отчёты, которые можно показать любому — от бухгалтера до учредителя. В бизнесе достаточно неопределённости, чтобы добавлять её туда, где можно быть честным. Никаких подводных камней и внезапных списаний.
+            </ValueCard>
+          </div>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: REVEAL }} className="mt-24">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Команда</h2>
+          <p className="text-neutral-600 leading-relaxed mb-10 max-w-3xl">
+            Мы — не аутсорс, который пишет код в вакууме. Каждый из нас работал с малым бизнесом, понимаем специфику отраслей и знаем, как оно бывает на практике.
+          </p>
+          <div className="grid gap-5 md:grid-cols-3">
+            <ValueCard Icon={Compass} t={tint(0)} delay={0} title="Продукт и стратегия">
+              Основатель с 10-летним опытом в управлении IT-проектами. Работал с десятками малых и средних предприятий, понимает боль собственника изнутри. Знает, как строить продукты, которые реально решают задачи бизнеса.
+            </ValueCard>
+            <ValueCard Icon={Code2} t={tint(1)} delay={0.06} title="Разработка">
+              Команда из 5 инженеров с опытом в enterprise-проектах для банков и ритейла. Знают, как писать код, который не падает в самый неподходящий момент. Next.js, PostgreSQL, Redis — их инструменты.
+            </ValueCard>
+            <ValueCard Icon={GraduationCap} t={tint(2)} delay={0.12} title="Экспертиза">
+              Консультанты с опытом работы в салонах красоты и охранных предприятиях. Знают специфику отраслей: от сменных графиков до требований Росгвардии. Работали в этих индустриях — понимают ваши задачи.
+            </ValueCard>
+          </div>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, ease: REVEAL }} className="mt-24">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-10">Почему WorkDo</h2>
+          <div className="grid gap-5 md:grid-cols-2">
+            <ValueCard Icon={Split} t={tint(0)} delay={0} title="Две вертикали — одна платформа">
+              Мы не делаем «универсальный» продукт, который ничего не умеет. Мы сфокусированы на двух отраслях — салоны красоты и охранные предприятия — и делаем их идеально. Это наш осознанный выбор.
+            </ValueCard>
+            <ValueCard Icon={Dna} t={tint(1)} delay={0.06} title="Экспертиза в ДНК">
+              Основатели сами работали в этих индустриях. Мы понимаем, что такое «сутки через трое», зачем нужна 1С, как считать себестоимость поста и почему графики не сходятся в Excel. Знаем ваши проблемы, потому что сами их решали.
+            </ValueCard>
+            <ValueCard Icon={TrendingUp} t={tint(2)} delay={0.12} title="Растём вместе">
+              Большинство наших клиентов — это рекомендации от существующих пользователей. Для нас это лучший комплимент. Мы не тратим на рекламу — инвестируем в качество продукта и ваш успех.
+            </ValueCard>
+            <ValueCard Icon={ShieldCheck} t={tint(3)} delay={0.18} title="Ответственность">
+              Мы не исчезнем завтра. Работаем на рынке, у нас есть офис, команда и обязательства перед клиентами. Каждый год показываем реальную статистику и отчитываемся о развитии продукта.
+            </ValueCard>
+          </div>
+        </motion.div>
+
+        <div className="my-24">
+          <CtaBlock title="Давайте познакомимся" sub="Запишитесь на демо — покажем платформу, ответим на вопросы. Без продаж, без давления. Просто покажем, как она работает." secondary={{ label: "Связаться с нами", href: "https://workdo.ru/contacts" }} />
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  );
+}
+
 export default function Page({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = use(params);
   const path = (slug || []).join("/");
 
   if (path === "register") return <RegisterPage />;
+  if (path === "about") return <AboutPage />;
 
   const section = findSection(path);
   if (section) return <OverviewPage id={section.id} />;
