@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { ArrowRight, CircleCheckBig, Sparkles, Shield, Users, BarChart3, MapPin, TrendingUp, Database, Layers, Lock, Clock, Smartphone, Target, Zap, Globe } from "lucide-react";
+import { ArrowRight, CircleCheckBig, Sparkles, Shield, Users, BarChart3, MapPin, Database, Layers, Clock, ShieldAlert, ShieldCheck, FileSpreadsheet, FileText, KeyRound } from "lucide-react";
 import { MagneticLink, Counter, REVEAL, RevealWords, RevealLine, HeroBg } from "../components/motion";
 
 function PricingSection() {
@@ -149,10 +149,10 @@ export default function Home() {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { value: 150, prefix: "", suffix: "+", label: "решений в одной платформе", desc: "", href: "/features" },
-              { value: 10000, prefix: "до ", suffix: "", label: "объектов и сотрудников", desc: "", href: "/advantages" },
-              { value: 5000, prefix: "до ", suffix: "", label: "объектов", desc: "", href: "/trust" },
-              { value: 99.9, prefix: "", suffix: "%", label: "Uptime инфраструктуры", desc: "SLA для корпоративных клиентов", href: "/trust" },
+              { value: 16, prefix: "", suffix: "", label: "разделов для ЧОП", desc: "функций управления охраной", href: "/features" },
+              { value: 6, prefix: "", suffix: "", label: "типов постов", desc: "от стационарного до парковки", href: "/features/obekty-i-posty" },
+              { value: 9, prefix: "", suffix: "", label: "категорий инцидентов", desc: "с планами действий и профилактикой", href: "/features/incidenty" },
+              { value: 4, prefix: "", suffix: "", label: "типа смен", desc: "смены, графики и автогенерация", href: "/features/smeny-i-grafik" },
             ].map((stat, i) => (
               <motion.a
                 key={i}
@@ -189,45 +189,45 @@ export default function Home() {
             {[
               {
                 icon: Users,
-                slug: "upravlenie-personalom",
-                title: "Управление персоналом",
-                desc: "Кадровый учёт, расчёт зарплаты, планирование смен. Сотрудники отмечаются через мобильное приложение.",
-                metric: "−40 ч/мес на расчёте ЗП",
+                slug: "sotrudniki-i-kadry",
+                title: "Сотрудники и кадры",
+                desc: "Кадровые карточки, графики «сутки/трое» и 2/2, лицензии, табель и автоматический расчёт зарплаты.",
+                metric: "5 должностей · 4 типа смен",
               },
               {
                 icon: MapPin,
-                slug: "gps-kontrol",
-                title: "GPS-контроль",
-                desc: "Трекинг сотрудников и транспорта. NFC/QR-отметки с фото, уведомления о нарушениях.",
-                metric: "Точность до 5 метров",
+                slug: "obekty-i-posty",
+                title: "Объекты и посты охраны",
+                desc: "6 типов постов, патрульные маршруты с контрольными точками и учёт оборудования.",
+                metric: "6 типов постов",
+              },
+              {
+                icon: Clock,
+                slug: "smeny-i-grafik",
+                title: "Смены и график",
+                desc: "Планирование смен «сотрудник × пост × время», автогенерация и календарь на месяц.",
+                metric: "4 типа смен",
+              },
+              {
+                icon: ShieldAlert,
+                slug: "incidenty",
+                title: "Инциденты и расследования",
+                desc: "Регистрация происшествий, планы действий, корневые причины и меры профилактики.",
+                metric: "9 категорий инцидентов",
               },
               {
                 icon: BarChart3,
-                slug: "finansovyj-uchet",
-                title: "Финансовый учёт",
-                desc: "Договоры, акты, счета. План-факт анализ, расчёт налогов и закрывающих документов.",
-                metric: "Интеграция с 1С и банками",
+                slug: "finansy-i-budget",
+                title: "Финансы, бюджет и сметы",
+                desc: "Доходы и расходы по месяцам, бюджет по статьям с планом и фактом, сметы на услуги.",
+                metric: "План vs факт по статьям",
               },
               {
-                icon: TrendingUp,
-                slug: "biznes-analitika",
-                title: "Бизнес-аналитика",
-                desc: "Метрики бизнеса в реальном времени: загрузка, выручка, рентабельность.",
-                metric: "Обновление каждые 5 секунд",
-              },
-              {
-                icon: Lock,
-                slug: "bezopasnost",
-                title: "Безопасность",
-                desc: "Изоляция данных на уровне БД. Ролевая модель, полный аудит действий.",
-                metric: "Соответствие 152-ФЗ",
-              },
-              {
-                icon: Database,
-                slug: "api-i-integracii",
-                title: "API и интеграции",
-                desc: "REST API с авторизацией, webhooks, OpenAPI-документация и готовые SDK.",
-                metric: "50+ API endpoints",
+                icon: Shield,
+                slug: "bezopasnost-dannyh",
+                title: "Безопасность данных",
+                desc: "Изоляция на уровне отдельной схемы БД для каждой компании. RBAC и полный аудит.",
+                metric: "Отдельная схема в БД",
               },
             ].map((item, i) => {
               const Icon = item.icon;
@@ -272,12 +272,12 @@ export default function Home() {
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Layers, slug: "upravlenie-filialami", title: "Управление филиалами", desc: "Ведите несколько компаний и филиалов в одном аккаунте. Данные каждого бизнеса изолированы, отчётность консолидируется автоматически." },
-              { icon: Smartphone, slug: "mobilnoe-prilozhenie", title: "Мобильное приложение", desc: "Сотрудники отмечают начало и конец смены, получают уведомления, подают заявки через приложение. Работает на iOS и Android." },
-              { icon: Clock, slug: "sokrashchenie-vremeni", title: "Сокращение времени на учёт", desc: "Автоматизация рутинных задач сокращает время на кадровый учёт до 70%, а на финансовую отчётность — до 60%." },
-              { icon: Target, slug: "sem-let-razvitiya", title: "7 лет развития", desc: "Платформа развивается с 2019 года. Более 150 релизов, 12000+ объектов под управлением, 5000+ сотрудников в системе." },
-              { icon: Shield, slug: "bezopasnost-dannyh", title: "Безопасность данных", desc: "Шифрование данных в покое и при передаче. Резервное копирование каждые 6 часов. Соответствие 152-ФЗ о персональных данных." },
-              { icon: Zap, slug: "integraciya-1s", title: "Интеграция с 1С и банками", desc: "Готовая интеграция с 1С:Бухгалтерия, банк-клиентом, системами оплаты. Обмен данными без ручного ввода." },
+              { icon: Layers, slug: "odin-akkaunt", title: "Одна платформа — несколько вертикалей", desc: "Один аккаунт — вертикали «ЧОП», «Бьюти» и «Яхты». Доступ к вертикалям включается флагами." },
+              { icon: ShieldCheck, slug: "roli-i-prava", title: "Роли и права доступа", desc: "RBAC с ролями владельца, администратора, менеджера и сотрудника. Права на уровне таблиц." },
+              { icon: Clock, slug: "avtoraschet-zp", title: "Автоматический расчёт зарплаты", desc: "Зарплата считается из табеля: оклад/час, ночные, праздничные, сверхурочные, премии, авансы, удержания и НДФЛ." },
+              { icon: FileSpreadsheet, slug: "import-export", title: "Импорт и экспорт данных", desc: "Массовый импорт сотрудников из CSV/XLSX — 31 колонка с автодетектом. Импорт и экспорт бригад." },
+              { icon: Users, slug: "ekspertnaya-komanda", title: "Отраслевая экспертиза", desc: "5 инженеров с enterprise-опытом и консультанты из салонов и охранных предприятий. Понимают специфику изнутри." },
+              { icon: Database, slug: "model-dannyh", title: "Модель данных под задачи ЧОП", desc: "16 разделов управления, справочники постов, бригад и лицензий. 54 миграции схемы за время разработки." },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
@@ -317,9 +317,9 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               { icon: Database, slug: "rezervnoe-kopirovanie", title: "Резервное копирование", desc: "Автоматическое резервирование всех данных каждые 6 часов. Восстановление в один клик без потерь.", metric: "Резервная копия каждые 6 часов" },
-              { icon: Layers, slug: "izolyaciya-dannyh", title: "Изоляция данных", desc: "Данные каждой компании хранятся отдельно. Никакого риска смешивания или случайной утечки.", metric: "Enterprise-grade изоляция" },
-              { icon: Globe, slug: "gotovye-integracii", title: "Готовые интеграции", desc: "1С, банк-клиент, платёжные системы. Все популярные сервисы работают из коробки.", metric: "50+ готовых интеграций" },
-              { icon: Lock, slug: "sootvetstvie-152-fz", title: "Соответствие 152-ФЗ", desc: "Обработка данных по закону. Шифрование, аудит действий, защита персональных данных сотрудников.", metric: "3 года хранения аудита" },
+              { icon: Layers, slug: "izolyaciya-dannyh", title: "Изоляция данных", desc: "У каждой компании — собственная схема в PostgreSQL. Смешивание данных клиентов исключено.", metric: "Отдельная схема в БД" },
+              { icon: FileText, slug: "zhurnal-audita", title: "Аудит каждого действия", desc: "Журнал «кто», «когда» и «что изменил» с diff «было → стало» и IP. Доступ ограничен по ролям.", metric: "Diff «было → стало»" },
+              { icon: KeyRound, slug: "kod-na-pochtu", title: "Подтверждение кодом на почту", desc: "Смена пароля, восстановление и удаление аккаунта — через 6-значный код. 3 попытки, TTL 10 минут.", metric: "Код на почту, TTL 10 мин" },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
