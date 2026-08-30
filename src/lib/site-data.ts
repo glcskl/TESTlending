@@ -520,6 +520,14 @@ export const SECTIONS: SectionData[] = [
   },
 ];
 
+export const SLUG_ALIASES: Record<string, string> = {
+  "izolyatsiya-dannykh": "izolyaciya-dannyh",
+  "izolyatsiya-dannih": "izolyaciya-dannyh",
+  "izolyaciya-dannih": "izolyaciya-dannyh",
+  "gotovye-integratsii": "gotovye-integracii",
+  "gotovie-integracii": "gotovye-integracii",
+};
+
 export function findSection(id: string): SectionData | undefined {
   return SECTIONS.find((s) => s.id === id);
 }
@@ -527,6 +535,7 @@ export function findSection(id: string): SectionData | undefined {
 export function findCard(sectionId: string, key: string): { section: SectionData; card: CardData } | undefined {
   const section = findSection(sectionId);
   if (!section) return undefined;
-  const card = section.items.find((c) => c.key === key);
+  const canonical = SLUG_ALIASES[key] ?? key;
+  const card = section.items.find((c) => c.key === canonical);
   return card ? { section, card } : undefined;
 }

@@ -146,7 +146,7 @@ function DetailPage({ sectionId, slug }: { sectionId: SectionId; slug: string })
   if (!found) return <NotFoundBody />;
   const { section, card } = found;
   const Icon = card.icon;
-  const t = tint(section.items.findIndex((c) => c.key === slug));
+  const t = tint(section.items.findIndex((c) => c.key === card.key));
   const related = section.items.filter((c) => c.key !== card.key);
   return (
     <div className="min-h-screen bg-white text-neutral-950 selection:bg-neutral-950 selection:text-white">
