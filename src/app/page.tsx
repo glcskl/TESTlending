@@ -140,9 +140,9 @@ export default function Home() {
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[0.9]">
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Решение" />
               {" "}
-              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="более 150-ти" />
+              <RevealLine className="text-neutral-950" text="более 150-ти" />
               <br />
-              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="вызовов и проблем" delay={0.12} />
+              <RevealLine className="text-neutral-950" text="вызовов и проблем" delay={0.12} />
               {" "}
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="вашего бизнеса" delay={0.12} />
             </h2>
@@ -181,7 +181,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[1.05]">
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Всё для управления" />
               <br />
-              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="бизнесом в одном окне" delay={0.15} />
+              <RevealLine className="text-neutral-950" text="бизнесом в одном окне" delay={0.15} />
             </h2>
           </motion.div>
 
@@ -265,7 +265,7 @@ export default function Home() {
           <motion.div {...fadeUp} className="text-center mb-20">
             <span className="text-sm font-medium uppercase tracking-widest text-neutral-500">Преимущества платформы</span>
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[0.9]">
-              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Почему выбирают" />
+              <RevealLine className="text-white" text="Почему выбирают" />
               <br />
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="WorkDo" delay={0.12} />
             </h2>
