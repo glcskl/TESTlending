@@ -35,26 +35,26 @@ function PricingSection() {
             const price = yearly ? Math.round(p.monthly * 0.8) : p.monthly;
             return (
               <motion.div key={p.name} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ delay: i * 0.1, duration: 0.6, ease: REVEAL }}
-                className={`relative rounded-2xl border p-6 flex flex-col ${p.highlight ? "border-2 border-white shadow-lg bg-white text-neutral-950" : "border-neutral-700 bg-neutral-800/50"}`}>
+                className={`relative rounded-2xl border p-6 flex flex-col transition-colors duration-300 ${p.highlight ? "border-2 border-white shadow-lg bg-white text-neutral-950" : "border-neutral-700 bg-neutral-800/50 group hover:bg-white hover:border-white"}`}>
                 {p.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="bg-neutral-950 text-white px-4 py-0.5 rounded-full text-xs font-medium inline-flex items-center gap-1 whitespace-nowrap border border-neutral-700"><Sparkles className="w-3 h-3" />Популярный</span>
                   </div>
                 )}
                 <div className={p.highlight ? "pt-2" : ""}>
-                  <h3 className={`text-lg font-semibold mb-1 ${p.highlight ? "" : "text-white"}`}>{p.name}</h3>
-                  <p className={`text-sm mb-4 ${p.highlight ? "text-neutral-500" : "text-neutral-400"}`}>{p.desc}</p>
+                  <h3 className={`text-lg font-semibold mb-1 ${p.highlight ? "" : "text-white group-hover:text-neutral-950"}`}>{p.name}</h3>
+                  <p className={`text-sm mb-4 ${p.highlight ? "text-neutral-500" : "text-neutral-400 group-hover:text-neutral-500"}`}>{p.desc}</p>
                   <div className="mb-4">
-                    <span className={`text-3xl font-bold ${p.highlight ? "" : "text-white"}`}>{price.toLocaleString("ru-RU")}</span>
-                    <span className={`${p.highlight ? "text-neutral-500" : "text-neutral-400"}`}> BYN/мес</span>
+                    <span className={`text-3xl font-bold ${p.highlight ? "" : "text-white group-hover:text-neutral-950"}`}>{price.toLocaleString("ru-RU")}</span>
+                    <span className={`${p.highlight ? "text-neutral-500" : "text-neutral-400 group-hover:text-neutral-500"}`}> BYN/мес</span>
                   </div>
                   <div className="space-y-2 mb-6 text-sm">
-                    <div className="flex items-center gap-2"><CircleCheckBig className={`w-4 h-4 flex-shrink-0 ${p.highlight ? "text-green-600" : "text-green-500"}`} /><span className={`${p.highlight ? "text-neutral-700" : "text-neutral-300"}`}>{p.cap}</span></div>
-                    <div className="flex items-center gap-2"><CircleCheckBig className={`w-4 h-4 flex-shrink-0 ${p.highlight ? "text-green-600" : "text-green-500"}`} /><span className={`${p.highlight ? "text-neutral-700" : "text-neutral-300"}`}>Весь функционал</span></div>
+                    <div className="flex items-center gap-2"><CircleCheckBig className={`w-4 h-4 flex-shrink-0 ${p.highlight ? "text-green-600" : "text-green-500 group-hover:text-green-600"}`} /><span className={`${p.highlight ? "text-neutral-700" : "text-neutral-300 group-hover:text-neutral-700"}`}>{p.cap}</span></div>
+                    <div className="flex items-center gap-2"><CircleCheckBig className={`w-4 h-4 flex-shrink-0 ${p.highlight ? "text-green-600" : "text-green-500 group-hover:text-green-600"}`} /><span className={`${p.highlight ? "text-neutral-700" : "text-neutral-300 group-hover:text-neutral-700"}`}>Весь функционал</span></div>
                   </div>
                 </div>
                 <div className="mt-auto">
-                  <a href="/register" className={`block text-center w-full py-2.5 rounded-xl text-sm font-medium transition-colors ${p.highlight ? "bg-neutral-950 text-white hover:bg-neutral-800" : "border border-neutral-600 text-neutral-200 hover:bg-neutral-700 hover:text-white"}`}>Выбрать</a>
+                  <a href="/register" className={`block text-center w-full py-2.5 rounded-xl text-sm font-medium transition-colors ${p.highlight ? "bg-neutral-950 text-white hover:bg-neutral-800" : "border border-neutral-600 text-neutral-200 hover:bg-neutral-700 hover:text-white group-hover:bg-neutral-950 group-hover:text-white group-hover:border-neutral-950"}`}>Выбрать</a>
                 </div>
               </motion.div>
             );
@@ -140,9 +140,9 @@ export default function Home() {
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[0.9]">
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Решение" />
               {" "}
-              <RevealLine className="bg-gradient-to-b from-neutral-950 via-neutral-950 to-neutral-400 bg-clip-text text-transparent" text="более 150-ти" />
+              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="более 150-ти" />
               <br />
-              <RevealLine className="text-neutral-950" text="вызовов и проблем" delay={0.12} />
+              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="вызовов и проблем" delay={0.12} />
               {" "}
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="вашего бизнеса" delay={0.12} />
             </h2>
@@ -179,7 +179,7 @@ export default function Home() {
           <motion.div {...fadeUp} className="text-center mb-20">
             <span className="text-sm font-medium uppercase tracking-widest text-neutral-400">Возможности платформы</span>
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[1.05]">
-              <RevealLine className="bg-gradient-to-b from-neutral-950 via-neutral-950 to-neutral-400 bg-clip-text text-transparent" text="Всё для управления" />
+              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Всё для управления" />
               <br />
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="бизнесом в одном окне" delay={0.15} />
             </h2>
@@ -265,7 +265,7 @@ export default function Home() {
           <motion.div {...fadeUp} className="text-center mb-20">
             <span className="text-sm font-medium uppercase tracking-widest text-neutral-500">Преимущества платформы</span>
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight mt-6 max-w-[900px] mx-auto leading-[0.9]">
-              <RevealLine className="bg-gradient-to-b from-white via-white to-neutral-500 bg-clip-text text-transparent" text="Почему выбирают" />
+              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Почему выбирают" />
               <br />
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="WorkDo" delay={0.12} />
             </h2>
@@ -312,7 +312,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <motion.div {...fadeUp} className="text-center mb-16">
             <span className="text-sm font-medium uppercase tracking-widest text-neutral-400">Ваши данные под защитой</span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mt-6"><RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Надёжность," />{" "}<RevealLine className="text-neutral-950" text="которой можно доверять" /></h2>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mt-6"><RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Надёжность," />{" "}<RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="которой можно доверять" /></h2>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
