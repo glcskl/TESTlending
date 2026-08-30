@@ -8,25 +8,20 @@ import { SiteHeader, SiteFooter } from "../../../components/Site";
 import { MagneticLink, Counter, REVEAL, RevealWords, RevealLine, HeroBg } from "../../../components/motion";
 import { PricingSection } from "../../../components/pricing-section";
 
-const MARQUEE_ITEMS = ["workdo.ru", "saas", "patrol"];
-
 function Marquee() {
-  const row = [...Array(2)].map((_, k) => (
-    <div key={k} className="flex items-center shrink-0">
-      {[...Array(6)].map((_, i) =>
-        MARQUEE_ITEMS.map((item, j) => (
-          <span key={`${k}-${i}-${j}`} className="flex items-center whitespace-nowrap text-sm font-semibold uppercase tracking-[0.3em] text-neutral-500 mx-6">
-            {item}
-            <span className="ml-12 text-emerald-500">•</span>
-          </span>
-        ))
-      )}
-    </div>
-  ));
+  const text = "SaaS • Patrol • work • ";
   return (
-    <section className="py-8 border-y border-neutral-200 bg-neutral-50 overflow-hidden">
-      <div className="marquee-track">{row}</div>
-    </section>
+    <div className="overflow-hidden whitespace-nowrap py-4">
+      <motion.div
+        className="inline-block"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ repeat: Infinity, duration: 80, ease: "linear" }}
+      >
+        {Array.from({ length: 8 }).map((_, s) => (
+          <span key={s} className="text-[120px] md:text-[180px] font-bold tracking-tighter text-neutral-100 mx-8">{text}</span>
+        ))}
+      </motion.div>
+    </div>
   );
 }
 
@@ -123,11 +118,10 @@ export default function SecurityVerticalPage() {
       <section className="py-24 md:py-40">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <motion.div {...fadeUp} className="text-center max-w-4xl mx-auto">
-            <SectionLabel>С 2024 года</SectionLabel>
             <h2 className="text-4xl md:text-7xl font-bold tracking-tight leading-[1.05]">
-              <RevealWords text="Платформа для полного управления охранным предприятием:" fill="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" />
+              <RevealWords text="Платформа для полного управления" fill="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" />
               {" "}
-              <RevealWords text="от кадрового учёта до финансовой отчётности." fill="text-neutral-950" delay={0.2} />
+              <RevealWords text="охранным предприятием: от кадрового учёта до финансовой отчётности." fill="text-neutral-950" delay={0.15} />
             </h2>
             <p className="text-neutral-500 leading-relaxed mt-8 max-w-3xl mx-auto">
               Мы объединили в одной системе управление персоналом, планирование смен, контроль объектов и патрулей, учёт инцидентов, оборудования и контрактов, а также финансовый учёт с расчётом зарплаты.
@@ -235,7 +229,7 @@ export default function SecurityVerticalPage() {
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight max-w-[900px] mx-auto leading-[1.05]">
               <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Всё для управления." />
               <br />
-              <RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Ничего лишнего." delay={0.12} />
+              <RevealLine className="text-neutral-950" text="Ничего лишнего." delay={0.12} />
             </h2>
           </motion.div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -273,7 +267,7 @@ export default function SecurityVerticalPage() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center relative z-10">
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: REVEAL }}
             className="text-5xl md:text-[80px] font-bold tracking-tighter leading-[0.9] mb-5">
-            <RevealWords text="Начните управлять охраной эффективнее." fill="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" />
+            <RevealWords text="Начните управлять охраной эффективнее." fill="text-white" />
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15, duration: 0.5 }}
             className="text-base text-neutral-400 max-w-xl mx-auto mb-8 leading-relaxed">
