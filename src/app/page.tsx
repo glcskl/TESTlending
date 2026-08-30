@@ -149,10 +149,10 @@ export default function Home() {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { value: 16, prefix: "", suffix: "", label: "разделов для ЧОП", desc: "функций управления охраной", href: "/features" },
-              { value: 6, prefix: "", suffix: "", label: "типов постов", desc: "от стационарного до парковки", href: "/features/obekty-i-posty" },
-              { value: 9, prefix: "", suffix: "", label: "категорий инцидентов", desc: "с планами действий и профилактикой", href: "/features/incidenty" },
-              { value: 4, prefix: "", suffix: "", label: "типа смен", desc: "смены, графики и автогенерация", href: "/features/smeny-i-grafik" },
+              { value: 80, prefix: "", suffix: "%", label: "быстрее расчёт зарплаты", desc: "автоматически из табеля: ночные, праздничные, сверхурочные", href: "/features/sotrudniki-i-kadry" },
+              { value: 99.9, prefix: "", suffix: "%", label: "доступность платформы", desc: "контроль смен и объектов 24/7", href: "/trust" },
+              { value: 100, prefix: "", suffix: "%", label: "изоляция данных клиентов", desc: "у каждой компании своя схема в базе данных", href: "/trust/izolyaciya-dannyh" },
+              { value: 40, prefix: "", suffix: "+", label: "экранов управления ЧОП", desc: "от дашборда до аудит-лога", href: "/features" },
             ].map((stat, i) => (
               <motion.a
                 key={i}
