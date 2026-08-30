@@ -312,7 +312,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <motion.div {...fadeUp} className="text-center mb-16">
             <span className="text-sm font-medium uppercase tracking-widest text-neutral-400">Ваши данные под защитой</span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mt-6"><RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Надёжность," />{" "}<RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="которой можно доверять" /></h2>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mt-6"><RevealLine className="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" text="Надёжность," />{" "}<RevealLine className="text-neutral-950" text="которой можно доверять" /></h2>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
@@ -361,7 +361,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center relative z-10">
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl md:text-[80px] font-bold tracking-tighter leading-[0.9] mb-5">
-            <RevealWords text="Готовы попробовать?" fill="text-white" />
+            <RevealWords text="Готовы попробовать?" fill="bg-gradient-to-r from-blue-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent" />
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15, duration: 0.5 }}
             className="text-base text-neutral-400 max-w-xl mx-auto mb-8 leading-relaxed">
